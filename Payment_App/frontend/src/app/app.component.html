@@ -1,0 +1,14 @@
+<app-payment-card id="card"></app-payment-card>
+
+<script>
+  const card = document.getElementById('card');
+
+  card.addEventListener('paymentToken', (e) => {
+    console.log('Token received:', e.detail);
+    // send token to backend for dummy payment
+  });
+
+  card.addEventListener('validationError', (e) => {
+    console.log('Validation errors:', e.detail);
+  });
+</script>

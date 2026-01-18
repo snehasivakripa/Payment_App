@@ -1,0 +1,65 @@
+<div class="payment-card" [ngStyle]="theme.cardContainer">
+ <div *ngIf="transactionMessage" 
+     class="transaction-message" 
+     [ngClass]="transactionStatus"
+     [ngStyle]="theme.message">
+  {{ transactionMessage }}
+</div>
+  <label>
+    Card Number
+    <input
+      type="text"
+      maxlength="19"
+      (input)="onCardInput($event)"
+      [attr.aria-invalid]="!!errors.cardNumber"
+      [ngStyle]="theme.input"
+    />
+    <span class="error" role="alert">{{ errors.cardNumber }}</span>
+  </label>
+
+  <div class="row">
+    <label>
+      Expiry MM/YY
+      <input
+        type="text"
+        maxlength="5"
+        (input)="onExpiryInput($event)"
+        [attr.aria-invalid]="!!errors.expiry"
+        [ngStyle]="theme.input"
+      />
+      <span class="error" role="alert">{{ errors.expiry }}</span>
+    </label>
+
+    <label>
+      CVC
+      <input
+        type="text"
+        maxlength="4"
+        (input)="onCvcInput($event)"
+        [attr.aria-invalid]="!!errors.cvc"
+        [ngStyle]="theme.input"
+      />
+      <span class="error" role="alert">{{ errors.cvc }}</span>
+    </label>
+  </div>
+
+  <label>
+    Postal Code
+    <input
+      type="text"
+      maxlength="6"
+      (input)="onPostalInput($event)"
+      [attr.aria-invalid]="!!errors.postalCode"
+      [ngStyle]="theme.input"
+    />
+    <span class="error" role="alert">{{ errors.postalCode }}</span>
+  </label>
+
+  <button
+    [disabled]="!isValid"
+    (click)="tokenize()"
+    [ngStyle]="theme.button"
+  >
+    Pay
+  </button>
+</div>
